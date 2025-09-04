@@ -28,7 +28,7 @@ def img_to_base64(path):
         return None
 
 # Dados CSV hospedado no Gist
-csv_url = f"st.secrets["CSV_GIST_URL"]?{int(time.time())}"
+csv_url = f"{st.secrets['CSV_GIST_URL']}?{int(time.time())}"
 
 # Carregar dados diretamente da URL
 df = pd.read_csv(csv_url, sep=",", decimal=",")
@@ -171,6 +171,7 @@ st.dataframe(
 st.subheader("💰 Total pago por pessoa")
 total_pago_pessoa = df[df["Pago"]=="Sim"].groupby("Pessoa")["Valor"].sum().reset_index().sort_values("Valor", ascending=False)
 st.dataframe(total_pago_pessoa.style.format({"Valor": "R$ {:.2f}"}), use_container_width=True)
+
 
 
 
