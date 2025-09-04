@@ -27,8 +27,8 @@ def img_to_base64(path):
         return None
 
 # Dados CSV hospedado no Gist
-#csv_url = st.secrets["CSV_GIST_URL"]
-csv_url = "https://gist.githubusercontent.com/allinemartins/fd2f45b0456b39f6a42deeefe6325186/raw/dados.csv"
+csv_url = st.secrets["CSV_GIST_URL"]
+
 # Carregar dados diretamente da URL
 df = pd.read_csv(csv_url, sep=",", decimal=",")
 df.columns = df.columns.str.strip().str.replace('"', '').str.replace('\ufeff','')  # remover BOM e aspas
@@ -170,5 +170,6 @@ st.dataframe(
 st.subheader("💰 Total pago por pessoa")
 total_pago_pessoa = df[df["Pago"]=="Sim"].groupby("Pessoa")["Valor"].sum().reset_index().sort_values("Valor", ascending=False)
 st.dataframe(total_pago_pessoa.style.format({"Valor": "R$ {:.2f}"}), use_container_width=True)
+
 
 
