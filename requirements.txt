@@ -1,0 +1,6 @@
+streamlit
+pandas
+numpy
+base64
+datetime
+io
